@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Product catalog lives in `src/lib/products.ts` as static data; pages render from it (no database needed for menu items).
+- Auth uses Lovable Cloud email/password; the user's name is stored in auth user metadata (`full_name`), no profiles table — keeps sign-up simple.
+- Session state comes from the single `AuthProvider` listener in `src/hooks/use-auth.tsx`, mounted in `__root.tsx`; don't add per-page auth listeners.
+- Form validation schemas live in `src/lib/form-schemas.ts` with tests in `src/test/`.

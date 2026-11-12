@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CakesRouteImport } from './routes/cakes'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as CupcakesRouteImport } from './routes/cupcakes'
+import { Route as DrinksRouteImport } from './routes/drinks'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as SignupRouteImport } from './routes/signup'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CakesRoute = CakesRouteImport.update({
+  id: '/cakes',
+  path: '/cakes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CupcakesRoute = CupcakesRouteImport.update({
+  id: '/cupcakes',
+  path: '/cupcakes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrinksRoute = DrinksRouteImport.update({
+  id: '/drinks',
+  path: '/drinks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/cakes': typeof CakesRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/cupcakes': typeof CupcakesRoute
+  '/drinks': typeof DrinksRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/cakes': typeof CakesRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/cupcakes': typeof CupcakesRoute
+  '/drinks': typeof DrinksRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/cakes': typeof CakesRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/cupcakes': typeof CupcakesRoute
+  '/drinks': typeof DrinksRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/cakes'
+    | '/contact'
+    | '/cookies'
+    | '/cupcakes'
+    | '/drinks'
+    | '/signin'
+    | '/signup'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/cakes'
+    | '/contact'
+    | '/cookies'
+    | '/cupcakes'
+    | '/drinks'
+    | '/signin'
+    | '/signup'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/cakes'
+    | '/contact'
+    | '/cookies'
+    | '/cupcakes'
+    | '/drinks'
+    | '/signin'
+    | '/signup'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CakesRoute: typeof CakesRoute
+  ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
+  CupcakesRoute: typeof CupcakesRoute
+  DrinksRoute: typeof DrinksRoute
+  SigninRoute: typeof SigninRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cakes': {
+      id: '/cakes'
+      path: '/cakes'
+      fullPath: '/cakes'
+      preLoaderRoute: typeof CakesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cupcakes': {
+      id: '/cupcakes'
+      path: '/cupcakes'
+      fullPath: '/cupcakes'
+      preLoaderRoute: typeof CupcakesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/drinks': {
+      id: '/drinks'
+      path: '/drinks'
+      fullPath: '/drinks'
+      preLoaderRoute: typeof DrinksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CakesRoute: CakesRoute,
+  ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
+  CupcakesRoute: CupcakesRoute,
+  DrinksRoute: DrinksRoute,
+  SigninRoute: SigninRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
