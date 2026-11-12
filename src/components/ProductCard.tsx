@@ -1,8 +1,14 @@
+import { ShoppingBag } from "lucide-react";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/use-cart";
 import { formatPrice, type Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
+  const { add } = useCart();
   return (
-    <article className="group overflow-hidden rounded-3xl border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+    <article className="group flex flex-col overflow-hidden rounded-3xl border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
       <div className="aspect-square overflow-hidden bg-secondary">
         <img
           src={product.image}
@@ -13,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <div className="space-y-2 p-5">
+      <div className="flex flex-1 flex-col gap-2 p-5">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-xl font-semibold leading-tight">{product.name}</h3>
           <span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-sm font-bold text-secondary-foreground">
@@ -24,6 +30,15 @@ export function ProductCard({ product }: { product: Product }) {
         {product.unit && (
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">{product.unit}</p>
         )}
+        <Button
+          className="mt-auto w-full"
+          onClick={() => {
+            add(product);
+            toast.success(`${product.name} added to cart`);
+          }}
+        >
+          <ShoppingBag /> Add to Cart
+        </Button>
       </div>
     </article>
   );

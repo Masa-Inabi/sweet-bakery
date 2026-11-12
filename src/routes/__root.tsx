@@ -16,6 +16,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/hooks/use-auth";
+import { CartProvider } from "@/hooks/use-cart";
+import { CartDrawer } from "@/components/CartDrawer";
 
 function NotFoundComponent() {
   return (
@@ -85,10 +87,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Sweet Bakery" },
-      { name: "description", content: "Sweet Bakery: fresh cakes, cupcakes, cookies and drinks baked with love." },
+      {
+        name: "description",
+        content: "Sweet Bakery: fresh cakes, cupcakes, cookies and drinks baked with love.",
+      },
       { name: "author", content: "Sweet Bakery" },
       { property: "og:title", content: "Sweet Bakery" },
-      { property: "og:description", content: "Fresh cakes, cupcakes, cookies and drinks baked with love." },
+      {
+        property: "og:description",
+        content: "Fresh cakes, cupcakes, cookies and drinks baked with love.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -133,15 +141,18 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">
-            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <Outlet />
-          </main>
-          <SiteFooter />
-        </div>
-        <Toaster position="top-center" />
+        <CartProvider>
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1">
+              {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+              <Outlet />
+            </main>
+            <SiteFooter />
+          </div>
+          <CartDrawer />
+          <Toaster position="top-center" />
+        </CartProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, LogOut } from "lucide-react";
 import { toast } from "sonner";
 
+import { CartButton } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { displayName, useAuth } from "@/hooks/use-auth";
@@ -45,10 +46,14 @@ export function SiteHeader() {
   ) : (
     <div className="flex items-center gap-2">
       <Button asChild variant="ghost" size="sm">
-        <Link to="/signin" onClick={() => setOpen(false)}>Sign In</Link>
+        <Link to="/signin" onClick={() => setOpen(false)}>
+          Sign In
+        </Link>
       </Button>
       <Button asChild size="sm">
-        <Link to="/signup" onClick={() => setOpen(false)}>Sign Up</Link>
+        <Link to="/signup" onClick={() => setOpen(false)}>
+          Sign Up
+        </Link>
       </Button>
     </div>
   );
@@ -65,23 +70,31 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
-            <Link key={l.to} to={l.to} className={linkClass} activeProps={{ className: activeClass }} activeOptions={{ exact: true }}>
+            <Link
+              key={l.to}
+              to={l.to}
+              className={linkClass}
+              activeProps={{ className: activeClass }}
+              activeOptions={{ exact: true }}
+            >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden lg:block">{authArea}</div>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          className="lg:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? <X /> : <Menu />}
-        </Button>
+        <div className="flex items-center gap-2">
+          <div className="hidden lg:block">{authArea}</div>
+          <CartButton />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? <X /> : <Menu />}
+          </Button>
+        </div>
       </div>
 
       {open && (
